@@ -24,10 +24,15 @@
 export default {
   asyncData() {
     return {
-      isCreateMode: false;
+      isCreateMode: false,
       formData: {
         id: ''
       }
+    }
+  },
+  computed : {
+    buttonText() {
+      return this.isCreateMode ? '新規登録' : 'ログイン'
     }
   }
 }

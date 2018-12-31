@@ -3,6 +3,9 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   srcDir: "app",
+  router: {
+    middleware: ['auth-cookie']
+  },
 
   /*
   ** Headers of the page
@@ -28,7 +31,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/common.css'
   ],
 
   /*

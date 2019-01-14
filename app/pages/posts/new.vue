@@ -8,8 +8,10 @@
         <el-input placeholder="本文を入力......" type="textarea" rows="15" v-model="formData.body" />
       </div>
       <div class="text-right" style="margin-top: 16px;">
-        <span class="el-icon-upload2" />
-        <span>Publish</span>
+        <el-button type="primary" @click="publish" round>
+          <span class="el-icon-upload2" />
+          <span>Publish</span>
+        </el-button>
       </div>
     </el-card>
   </section>
@@ -34,9 +36,16 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
-    publish() {
-
-    }
+    async publish() {
+      const payload = {
+        user: this.user,
+        ...this.formData,
+      }
+      await this.publishPost({ payload })
+      this.$router.push('/posts')
+    },
+    ...mapActions('users', ['updateUser']),
+    ...mapActions('posts', ['publishPost'])
   } 
 }
 </script>

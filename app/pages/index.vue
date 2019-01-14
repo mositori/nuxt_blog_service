@@ -23,6 +23,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Cookies from 'universal-cookie'
+
 export default {
   asyncData({ redirect, store }) {
     if (store.getters['user']) {
@@ -43,6 +44,7 @@ export default {
   },
   methods: {
     async handleClickSubmit() {
+      const cookies = new Cookies()
       if (this.isCreateMode) {
         try {
           await this.register({ ...this.formData　})
@@ -65,7 +67,7 @@ export default {
         }
       } else {
         try {
-          await this.login({...tjos.formData })
+          await this.login({...this.formData })
           this.$notify({
             type: 'success',
             title: 'ログイン成功',
